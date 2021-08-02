@@ -3,8 +3,7 @@ name: Python package
 on: [push]
 
 jobs:
-  build:
-
+  build-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,4 +21,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Syntax check
         run: |
-          python -m py_compile main.py
+          python -m py_compile *.py
+      - name: Unit Tests
+        run: |
+          python test.py
